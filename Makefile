@@ -1,7 +1,7 @@
 SOURCEDIR=.
 SOURCES := $(shell find $(SOURCEDIR) -name '*.go')
 BINARY=maputnik
-EDITOR_VERSION ?= v1.6.1
+EDITOR_VERSION ?= v1.5.0
 
 all: $(BINARY)
 
@@ -17,7 +17,7 @@ dependencies:
 	go get github.com/mitchellh/gox
 
 $(BINARY): $(SOURCES) bindata_assetfs.go
-	gox -osarch "windows/amd64 linux/amd64 darwin/amd64" -output "bin/{{.OS}}/${BINARY}"
+	gox -osarch "linux/amd64 darwin/amd64" -output "bin/{{.OS}}/${BINARY}"
 
 editor/create_folder: dependencies
 	mkdir -p editor
