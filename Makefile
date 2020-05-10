@@ -23,8 +23,8 @@ editor/create_folder: dependencies
 	mkdir -p editor
 
 editor/pull_release: editor/create_folder
-	cd editor && rm -rf public && curl -L https://github.com/maputnik/editor/archive/v1.7.0.zip --output public.zip && unzip public.zip && \
-	rm public.zip && cd editor-1.7.0 && npm install && npm run build && mv build ../public
+	cd editor && rm -rf ./* && curl -L https://github.com/maputnik/editor/archive/v1.7.0.zip --output public.zip && unzip public.zip && \
+	rm public.zip && cd editor-1.7.0 && npm install && npm run build && mv build/build ../ && cd .. && mv build public
 
 bindata_assetfs.go: editor/pull_release
 	go-bindata-assetfs --prefix "editor/" editor/public/...
